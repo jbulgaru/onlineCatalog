@@ -8,22 +8,17 @@ public class Professors {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     Integer ID;
-
-
     @Column(name = "FirstName", length = 48, nullable = false)
-    String firstName ;
-
-
+    String firstName;
     @Column(name = "LastName", length = 48, nullable = false)
-    String lastName ;
-
+    String lastName;
     @Column(name = "email", length = 82, nullable = false)
     String email;
 
-    public Professors() {}
+    public Professors() {
+    }
 
-    public Professors(String firstName,
-                      String lastName, String email) {
+    public Professors(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

@@ -1,3 +1,5 @@
+<%@ page import="com.stefanini.onlinecatalog.dao.DaoProfessors" %>
+<%@ page import="com.stefanini.onlinecatalog.entity.Professors" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -9,5 +11,7 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
+<br/>
+<a href="ServletProfessor">Show Professor</a>
 </body>
 </html>
