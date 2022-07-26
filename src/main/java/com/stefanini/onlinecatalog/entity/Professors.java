@@ -1,7 +1,5 @@
 package com.stefanini.onlinecatalog.entity;
 
-
-
 import javax.persistence.*;
 
 @Entity
