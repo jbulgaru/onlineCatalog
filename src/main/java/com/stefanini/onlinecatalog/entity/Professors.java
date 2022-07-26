@@ -1,6 +1,6 @@
 package com.stefanini.onlinecatalog.entity;
 
-import com.sun.istack.internal.NotNull;
+
 
 import javax.persistence.*;
 
@@ -11,15 +11,15 @@ public class Professors {
     @Column(name = "ID")
     Integer ID;
 
-    @NotNull
-    @Column(name = "FirstName", length = 48)
+
+    @Column(name = "FirstName", length = 48, nullable = false)
     String firstName ;
 
-    @NotNull
-    @Column(name = "LastName", length = 48)
+
+    @Column(name = "LastName", length = 48, nullable = false)
     String lastName ;
 
-    @Column(name = "email", length = 82)
+    @Column(name = "email", length = 82, nullable = false)
     String email;
 
     public Professors() {}
