@@ -19,15 +19,15 @@ public class ServletProfessor extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoProfessor daoProfessor = new DaoProfessor();
-//        PrintWriter sw = response.getWriter();
-//
-//        daoProfessor.getAll().forEach(System.out::println);
-//
-//        Professors p = (Professors) daoProfessor.get(22).orElse(null);
-//        p.setEmail("vitalieparaskiv@gmail.com");
-//        daoProfessor.update(p);
+        try {
+//            Professors p = (Professors) daoProfessor.get(25).orElse(null);
+//            daoProfessor.delete(p);
 
-        daoProfessor.getAll().forEach(System.out::println);
+            daoProfessor.getAll().forEach(System.out::println);
+
+        } finally {
+            daoProfessor.closeEntityManager();
+        }
     }
 
     @Override
