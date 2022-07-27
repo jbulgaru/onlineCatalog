@@ -1,6 +1,6 @@
 package com.stefanini.onlinecatalog;
 
-import com.stefanini.onlinecatalog.dao.DaoProfessors;
+import com.stefanini.onlinecatalog.dao.DaoProfessor;
 import com.stefanini.onlinecatalog.entity.Professors;
 
 import javax.servlet.*;
@@ -18,11 +18,16 @@ public class ServletProfessor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("\n\n\tMy Servlet verification\n\n");
-        DaoProfessors daoProfessors = new DaoProfessors();
-        Professors professor = (Professors) daoProfessors.get(21).orElse(null);
-        PrintWriter sw = response.getWriter();
-        System.out.println("\n" + professor);
+        DaoProfessor daoProfessor = new DaoProfessor();
+//        PrintWriter sw = response.getWriter();
+//
+//        daoProfessor.getAll().forEach(System.out::println);
+//
+//        Professors p = (Professors) daoProfessor.get(22).orElse(null);
+//        p.setEmail("vitalieparaskiv@gmail.com");
+//        daoProfessor.update(p);
+
+        daoProfessor.getAll().forEach(System.out::println);
     }
 
     @Override

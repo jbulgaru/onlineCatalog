@@ -5,12 +5,11 @@ import com.stefanini.onlinecatalog.JpaService;
 import com.stefanini.onlinecatalog.entity.Professors;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class DaoProfessors implements DAO<Professors> {
+public class DaoProfessor implements DAO<Professors> {
     private static JpaService jpaService = JpaService.getInstance();
     private EntityManagerFactory entityManagerFactory = jpaService.getEntityManagerFactory();
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -55,14 +54,6 @@ public class DaoProfessors implements DAO<Professors> {
     public void delete(Professors p) {
         Professors persistentInstance = entityManager.merge(p);
         executeInsideTransaction(entityManager -> entityManager.remove(persistentInstance));
-    }
-
-    public Professors getById(String str) {
-        Query query = entityManager.createQuery(
-                String.format("from Professors as p where p.id = %s", str), Professors.class);
-        if (!query.getResultList().isEmpty())
-            return (Professors) query.getResultList().get(0);
-        return null;
     }
 
     private void executeInsideTransaction(Consumer<EntityManager> action) {
