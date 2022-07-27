@@ -62,11 +62,13 @@ public class DaoProfessor implements DAO<Professors> {
             tx.begin();
             action.accept(entityManager);
             tx.commit();
-        } catch (PersistenceException e) {
+        } catch (Exception e) {
             tx.rollback();
-            System.out.println("PersistenceException!!! Can not update because of constraints!");
-//            throw e;
+            System.out.println(e.getMessage());
         }
     }
-
+    public void closeEntityManager() {
+        if (entityManager != null)
+            entityManager.close();
+    }
 }
