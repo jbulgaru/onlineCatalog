@@ -1,6 +1,5 @@
 package com.stefanini.onlinecatalog.dao;
 
-
 import com.stefanini.onlinecatalog.JpaService;
 import com.stefanini.onlinecatalog.entity.Professors;
 
@@ -10,9 +9,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class DaoProfessor implements DAO<Professors> {
-    private static JpaService jpaService = JpaService.getInstance();
-    private EntityManagerFactory entityManagerFactory = jpaService.getEntityManagerFactory();
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityManager entityManager = JpaService.getInstance();
 
     @Override
     public void save(Professors professor) {

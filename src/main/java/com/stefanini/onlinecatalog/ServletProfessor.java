@@ -2,6 +2,7 @@ package com.stefanini.onlinecatalog;
 
 import com.stefanini.onlinecatalog.dao.DaoProfessor;
 import com.stefanini.onlinecatalog.entity.Professors;
+import com.stefanini.onlinecatalog.entity.Students;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -19,6 +20,7 @@ public class ServletProfessor extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoProfessor daoProfessor = new DaoProfessor();
+
 //        PrintWriter sw = response.getWriter();
 //
 //        daoProfessor.getAll().forEach(System.out::println);
@@ -27,7 +29,7 @@ public class ServletProfessor extends HttpServlet {
 //        p.setEmail("vitalieparaskiv@gmail.com");
 //        daoProfessor.update(p);
 
-        daoProfessor.getAll().forEach(System.out::println);
+       daoProfessor.getAll().forEach(System.out::println);
     }
 
     @Override
