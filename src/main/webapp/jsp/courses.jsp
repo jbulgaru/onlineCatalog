@@ -12,6 +12,7 @@
 </head>
 <jsp:include page="/jsp/navbar.jsp"/>
 <body>
+
 <h2>Courses Page</h2>
 </body>
 </html>

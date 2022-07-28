@@ -19,21 +19,20 @@ public class ServletCourses extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoSubject daoSubject = new DaoSubject();
-        try {
-            List<Subjects> coursesList = daoSubject.getAll();
-            request.setAttribute("courses", coursesList);
+        List<Subjects> coursesList = daoSubject.getAll();
+        request.setAttribute("courses", coursesList);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/courses.jsp");
-            dispatcher.forward(request, response);
+        daoSubject.closeEntityManager();
 
-        } finally {
-            daoSubject.closeEntityManager();
-        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/courses.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        DaoSubject daoSubject = new DaoSubject();
 
+//        daoSubject.closeEntityManager();
     }
 
     public void destroy() {
