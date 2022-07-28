@@ -1,7 +1,7 @@
 package com.stefanini.onlinecatalog;
 
-import com.stefanini.onlinecatalog.dao.DaoProfessor;
-import com.stefanini.onlinecatalog.entity.Professors;
+import com.stefanini.onlinecatalog.dao.DaoSubject;
+import com.stefanini.onlinecatalog.entity.Subjects;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -9,8 +9,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ServletProfessor", value = "/ServletProfessor")
-public class ServletProfessor extends HttpServlet {
+@WebServlet(name = "ServletCourses", value = "/ServletCourses")
+public class ServletCourses extends HttpServlet {
 
     @Override
     public void init() {
@@ -18,16 +18,16 @@ public class ServletProfessor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DaoProfessor daoProfessor = new DaoProfessor();
+        DaoSubject daoSubject = new DaoSubject();
         try {
-            List<Professors> professorsList = daoProfessor.getAll();
-            request.setAttribute("professors", professorsList);
+            List<Subjects> coursesList = daoSubject.getAll();
+            request.setAttribute("courses", coursesList);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/professors.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/courses.jsp");
             dispatcher.forward(request, response);
 
         } finally {
-            daoProfessor.closeEntityManager();
+            daoSubject.closeEntityManager();
         }
     }
 

@@ -10,9 +10,9 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class DaoProfessor implements DAO<Professors> {
-    private static JpaService jpaService = JpaService.getInstance();
-    private EntityManagerFactory entityManagerFactory = jpaService.getEntityManagerFactory();
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
+    private static final JpaService jpaService = JpaService.getInstance();
+    private final EntityManagerFactory entityManagerFactory = jpaService.getEntityManagerFactory();
+    private final EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     @Override
     public void save(Professors professor) {
