@@ -1,24 +1,27 @@
 package com.stefanini.onlinecatalog.dao;
 
+
 import com.stefanini.onlinecatalog.JpaService;
-import com.stefanini.onlinecatalog.entity.Professors;
+import com.stefanini.onlinecatalog.entity.Subjects;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class DaoProfessor implements DAO<Professors> {
-    EntityManager entityManager = JpaService.getInstance();
+public class DaoSubject implements DAO<Subjects> {
+    private static JpaService jpaService = JpaService.getInstance();
+    private EntityManagerFactory entityManagerFactory = jpaService.getEntityManagerFactory();
+    private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     @Override
-    public void save(Professors professor) {
+    public void save(Subjects subject) {
         try {
             EntityTransaction transaction = entityManager.getTransaction();
             boolean successfulPersist = false;
             transaction.begin();
             try {
-                entityManager.persist(professor);
+                entityManager.persist(subject);
                 successfulPersist = true;
 
             } finally {
@@ -32,24 +35,24 @@ public class DaoProfessor implements DAO<Professors> {
 
     @Override
     public Optional get(Integer id) {
-        return Optional.ofNullable(entityManager.find(Professors.class, id));
+        return Optional.ofNullable(entityManager.find(Subjects.class, id));
     }
 
     @Override
-    public List<Professors> getAll() {
-        Query query = entityManager.createQuery("SELECT c FROM Professors c", Professors.class);
+    public List<Subjects> getAll() {
+        Query query = entityManager.createQuery("SELECT c FROM Subjects c", Subjects.class);
         return query.getResultList();
     }
 
     @Override
-    public void update(Professors p) {
-        executeInsideTransaction(entityManager -> entityManager.merge(p));
+    public void update(Subjects s) {
+        executeInsideTransaction(entityManager -> entityManager.merge(s));
     }
 
 
     @Override
-    public void delete(Professors p) {
-        Professors persistentInstance = entityManager.merge(p);
+    public void delete(Subjects s) {
+        Subjects persistentInstance = entityManager.merge(s);
         executeInsideTransaction(entityManager -> entityManager.remove(persistentInstance));
     }
 
