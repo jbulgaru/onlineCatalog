@@ -1,6 +1,6 @@
 package com.stefanini.onlinecatalog.dao;
 
-import com.stefanini.onlinecatalog.JpaService;
+qimport com.stefanini.onlinecatalog.JpaService;
 import com.stefanini.onlinecatalog.entity.Professors;
 
 import javax.persistence.*;
