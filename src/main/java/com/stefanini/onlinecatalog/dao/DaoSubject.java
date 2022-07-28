@@ -2,18 +2,17 @@ package com.stefanini.onlinecatalog.dao;
 
 
 import com.stefanini.onlinecatalog.JpaService;
+import com.stefanini.onlinecatalog.JpaServiceW;
 import com.stefanini.onlinecatalog.entity.Subjects;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 public class DaoSubject implements DAO<Subjects> {
-    private static final JpaService jpaService = JpaService.getInstance();
-    private final EntityManagerFactory entityManagerFactory = jpaService.getEntityManagerFactory();
-    private final EntityManager entityManager = entityManagerFactory.createEntityManager();
-
+    private static JpaServiceW jpaServiceW = JpaServiceW.getInstance();
+    private EntityManagerFactory entityManagerFactory = jpaServiceW.getEntityManagerFactory();
+    private EntityManager entityManager = entityManagerFactory.createEntityManager();
     @Override
     public void save(Subjects subject) {
         try {

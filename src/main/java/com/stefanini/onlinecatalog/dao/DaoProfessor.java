@@ -1,6 +1,6 @@
 package com.stefanini.onlinecatalog.dao;
 
-qimport com.stefanini.onlinecatalog.JpaService;
+import com.stefanini.onlinecatalog.JpaServiceW;
 import com.stefanini.onlinecatalog.entity.Professors;
 
 import javax.persistence.*;
@@ -9,10 +9,15 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class DaoProfessor implements DAO<Professors> {
-    EntityManager entityManager = JpaService.getInstance();
-
+    private static JpaServiceW jpaServiceW = JpaServiceW.getInstance();
+    private EntityManagerFactory entityManagerFactory = jpaServiceW.getEntityManagerFactory();
+    private EntityManager entityManager = entityManagerFactory.createEntityManager();
     @Override
     public void save(Professors professor) {
+
+        EntityManagerFactory entityManagerFactory = jpaServiceW.getEntityManagerFactory();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
         try {
             EntityTransaction transaction = entityManager.getTransaction();
             boolean successfulPersist = false;
