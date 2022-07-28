@@ -2,18 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>OnlineCatalog</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<jsp:include page="/jsp/navbar.jsp"/>
+<br/>
+<h1
+        class="center_brown"><%= "Online Catalog" %>
 </h1>
-<br/>
-    <a href="hello-servlet">Hello Servlet</a>
-<br/>
-    <a href="ServletProfessor">Show Professor</a>
-<br/>
-    <a href="ServletStudents">Show Students</a>
-<br/>
-    <a href="ServletProf_Stud_Subj">Show Register</a>
 </body>
 </html>

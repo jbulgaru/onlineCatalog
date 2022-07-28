@@ -1,0 +1,17 @@
+.navbar {
+    height: 70px !important;
+}
+
+.center_brown {
+    text-align: center;
+    color: brown;
+}
+
+.register {
+    text-align: left;
+    margin-left: 10%;
+}
+
+a {
+    text-decoration: none;
+}

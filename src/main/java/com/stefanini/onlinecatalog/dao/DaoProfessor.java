@@ -1,5 +1,6 @@
 package com.stefanini.onlinecatalog.dao;
 
+
 import com.stefanini.onlinecatalog.JpaService;
 import com.stefanini.onlinecatalog.entity.Professors;
 
@@ -9,7 +10,9 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class DaoProfessor implements DAO<Professors> {
-    EntityManager entityManager = JpaService.getInstance();
+    private static final JpaService jpaService = JpaService.getInstance();
+    private final EntityManagerFactory entityManagerFactory = jpaService.getEntityManagerFactory();
+    private final EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     @Override
     public void save(Professors professor) {
@@ -67,9 +70,5 @@ public class DaoProfessor implements DAO<Professors> {
     public void closeEntityManager() {
         if (entityManager != null)
             entityManager.close();
-    }
-    public Professors find(Integer id){
-        Professors professor =  entityManager.find(Professors.class, id);
-        return professor;
     }
 }
