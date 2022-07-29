@@ -24,11 +24,20 @@
                     <a class="nav-link active" aria-current="page" href="/OnlineCatalog/ServletCatalog">Catalog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/OnlineCatalog/ServletCourses">Courses</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="/OnlineCatalog/ServletStudents">Students</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Courses
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletCourses">Courses List</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="jsp/add-new-course.jsp">Add New Course</a></li>
+                    </ul>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">

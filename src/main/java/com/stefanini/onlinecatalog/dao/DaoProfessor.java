@@ -14,10 +14,6 @@ public class DaoProfessor implements DAO<Professors> {
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
     @Override
     public void save(Professors professor) {
-
-        EntityManagerFactory entityManagerFactory = jpaServiceW.getEntityManagerFactory();
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         try {
             EntityTransaction transaction = entityManager.getTransaction();
             boolean successfulPersist = false;
@@ -50,7 +46,6 @@ public class DaoProfessor implements DAO<Professors> {
     public void update(Professors p) {
         executeInsideTransaction(entityManager -> entityManager.merge(p));
     }
-
 
     @Override
     public void delete(Professors p) {
