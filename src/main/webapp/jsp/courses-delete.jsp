@@ -26,7 +26,7 @@
         <input name='id' type='hidden' value=<%=course.getID()%>>
         <input name='delete' type='hidden' value="true">
         <div class="form-group">
-            <input class="form-control" name='name' type='text' value=<%=course.getName()%>><br/>
+            <input class="form-control" name='name' type='text' value="<%=course.getName()%>"><br/>
         </div>
         <div class="form-group">
             <input class="form-control" name='classroom' type='number' value=<%=course.getRoom()%>><br/>

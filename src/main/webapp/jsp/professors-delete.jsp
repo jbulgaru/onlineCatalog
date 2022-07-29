@@ -26,13 +26,13 @@
         <input name='id' type='hidden' value=<%=p.getID()%>>
         <input name='delete' type='hidden' value="true">
         <div class="form-group">
-            <input class="form-control" name='firstName' type='text' value=<%=p.getFirstName()%>><br/>
+            <input class="form-control" name='firstName' type='text' value="<%=p.getFirstName()%>"><br/>
         </div>
         <div class="form-group">
-            <input class="form-control" name='lastName' type='text' value=<%=p.getLastName()%>><br/>
+            <input class="form-control" name='lastName' type='text' value="<%=p.getLastName()%>"><br/>
         </div>
         <div class="form-group">
-            <input class="form-control" name='email' type='email' value=<%=p.getEmail()%>><br/>
+            <input class="form-control" name='email' type='email' value="<%=p.getEmail()%>"><br/>
         </div>
         <div><p class="center_brown">Are you sure you want to delete this record ?</p></div>
         <div>
