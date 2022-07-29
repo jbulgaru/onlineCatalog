@@ -22,12 +22,12 @@ public class DaoStudent implements  DAO<Students> {
 
         return query.getResultList() ;
     }
-    public List<Students>  groupStudentsBySubjects() {
+    /*public List<Students>  groupStudentsBySubjects() {
         Query query = entityManager.createNamedQuery("group students by subjects");
 
         return query.getResultList() ;
     }
-
+*/
 
     @Override
     public void save(Students students) {
@@ -55,6 +55,31 @@ public class DaoStudent implements  DAO<Students> {
         entityManager.remove(student);
         entityManager.getTransaction().commit();
     }
+    public List<Students> getBursieriDeMerit(){
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("SELECT s " +
+                "FROM Students s " +
+                "JOIN FETCH  Prof_Stud_Subj Prof " +
+                "ON Prof.ID = s.ID and Prof.grade >= 9 ORDER by Prof.grade desc", Students.class);
+        List<Students> students =  query.getResultList();
+       /* for (int i = 0; i < students.size(); i++) {
+            System.out.println(students.get(i).toString());
+        }*/
+        entityManager.getTransaction().commit();
+        return students;
+    }
+
+    public List<Students> getGrantHolders(){
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("SELECT s from Students s where s.grantHolder = 'y'", Students.class);
+        List<Students> students =  query.getResultList();
+        /*for (int i = 0; i < students.size(); i++) {
+            System.out.println(students.get(i).toString());
+        }*/
+        entityManager.getTransaction().commit();
+        return students;
+    }
+
     public void close(){
         entityManager.close();
     }

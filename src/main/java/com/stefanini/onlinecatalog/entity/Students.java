@@ -11,6 +11,7 @@ import javax.persistence.*;
      @NamedQuery(name = "find student by min grade", query = "select s from Students s")
      @NamedQuery(name = "group students by professors", query = "select s from Students s")
      @NamedQuery(name = "group students by subjects", query = "select s from Students s group by ")*/
+
 @Entity
 public class Students {
     @Id
