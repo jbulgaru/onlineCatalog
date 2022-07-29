@@ -25,7 +25,10 @@
         <div class="form-group">
             <input class="form-control" name='email' type='email' placeholder="Email"/><br/>
         </div>
-        <input class="btn btn-success" name='Submit' type='submit'/>
+        <div>
+            <input class="btn btn-outline-success btn-sm" name='Submit' type='submit'/>
+            <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog/ServletProfessors">Cancel</a>
+        </div>
     </form>
 </div>
 </body>
