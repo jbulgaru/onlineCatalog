@@ -62,9 +62,9 @@ public class DaoProf_Stud_Subj implements  DAO<Prof_Stud_Subj>{
 
         Object[] gradeData ={null, null, null};
         try {
-            gradeData[0] = daoStudent.find(2);
-            gradeData[1] = daoProfessor.find(1);
-            gradeData[2] = daoSubject.find(1);
+            gradeData[0] = daoStudent.get(2);
+            gradeData[1] = daoProfessor.get(1);
+            gradeData[2] = daoSubject.get(1);
             for (int i = 0; i < gradeData.length; i++) {
                 if(gradeData[i] == null)
                     throw new Exception();
