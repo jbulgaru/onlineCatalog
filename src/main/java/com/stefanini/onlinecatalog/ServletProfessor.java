@@ -30,6 +30,7 @@ public class ServletProfessor extends HttpServlet {
 //        daoProfessor.update(p);
 
        daoProfessor.getAll().forEach(System.out::println);
+       daoProfessor.closeEntityManager();
     }
 
     @Override

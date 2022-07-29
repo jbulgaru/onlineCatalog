@@ -68,4 +68,8 @@ public class DaoProfessor implements DAO<Professors> {
         if (entityManager != null)
             entityManager.close();
     }
+    public Professors find(Integer id){
+        Professors professor =  entityManager.find(Professors.class, id);
+        return professor;
+    }
 }

@@ -10,9 +10,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class DaoSubject implements DAO<Subjects> {
-    private static JpaService jpaService = JpaService.getInstance();
-    private EntityManagerFactory entityManagerFactory = jpaService.getEntityManagerFactory();
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
+    EntityManager entityManager = JpaService.getInstance();
 
     @Override
     public void save(Subjects subject) {
@@ -55,7 +53,10 @@ public class DaoSubject implements DAO<Subjects> {
         Subjects persistentInstance = entityManager.merge(s);
         executeInsideTransaction(entityManager -> entityManager.remove(persistentInstance));
     }
-
+    public Subjects find(Integer id){
+        Subjects subject =  entityManager.find(Subjects.class, id);
+        return subject;
+    }
     private void executeInsideTransaction(Consumer<EntityManager> action) {
         EntityTransaction tx = entityManager.getTransaction();
         try {

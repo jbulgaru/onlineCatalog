@@ -22,6 +22,12 @@ public class DaoStudent implements  DAO<Students> {
 
         return query.getResultList() ;
     }
+    public List<Students>  groupStudentsBySubjects() {
+        Query query = entityManager.createNamedQuery("group students by subjects");
+
+        return query.getResultList() ;
+    }
+
 
     @Override
     public void save(Students students) {

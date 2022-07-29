@@ -5,11 +5,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class JpaService {
-    private static final EntityManagerFactory entityManagerFactory =
+    private final EntityManagerFactory entityManagerFactory =
             Persistence.createEntityManagerFactory("persistenceUnitName");
-    private static final EntityManager entityManager = entityManagerFactory.createEntityManager();
-    private JpaService() {}
+    public  EntityManager entityManager;
+    private JpaService() {entityManager = entityManagerFactory.createEntityManager();}
     public static  EntityManager getInstance() {
-        return entityManager;
+        return new JpaService().entityManager;
     }
 }
