@@ -9,9 +9,10 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class DaoProfessor implements DAO<Professors> {
-    private static JpaServiceW jpaServiceW = JpaServiceW.getInstance();
-    private EntityManagerFactory entityManagerFactory = jpaServiceW.getEntityManagerFactory();
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
+    private static final JpaServiceW jpaServiceW = JpaServiceW.getInstance();
+    private final EntityManagerFactory entityManagerFactory = jpaServiceW.getEntityManagerFactory();
+    private final EntityManager entityManager = entityManagerFactory.createEntityManager();
+
     @Override
     public void save(Professors professor) {
         try {
@@ -42,7 +43,14 @@ public class DaoProfessor implements DAO<Professors> {
         return query.getResultList();
     }
 
-    @Override
+    public List<Professors> getAllFiltered(String q) {
+        Query query = entityManager.createQuery(
+                        "SELECT p FROM Professors p WHERE lower(CONCAT(p.firstName, p.lastName)) LIKE ?1", Professors.class)
+                .setParameter(1, '%' + q.toLowerCase() + '%');
+        return query.getResultList();
+    }
+
+
     public void update(Professors p) {
         executeInsideTransaction(entityManager -> entityManager.merge(p));
     }
@@ -64,6 +72,7 @@ public class DaoProfessor implements DAO<Professors> {
             System.out.println(e.getMessage());
         }
     }
+
     public void closeEntityManager() {
         if (entityManager != null)
             entityManager.close();

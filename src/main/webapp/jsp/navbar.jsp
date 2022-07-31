@@ -44,15 +44,15 @@
                         Professors
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletProfessors">Professors List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletProfessors/">Professors List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-professor.jsp">New Professor</a></li>
                     </ul>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" role="search" method="get" action="?q=filter">
+                <input class="form-control me-2" type="search" name="filter" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>

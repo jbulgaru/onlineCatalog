@@ -2,6 +2,7 @@ package com.stefanini.onlinecatalog;
 
 import com.stefanini.onlinecatalog.dao.DaoSubject;
 import com.stefanini.onlinecatalog.entity.ListCourses;
+import com.stefanini.onlinecatalog.entity.Professors;
 import com.stefanini.onlinecatalog.entity.Subjects;
 
 import javax.servlet.*;
@@ -23,8 +24,14 @@ public class ServletCourses extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoSubject daoSubject = new DaoSubject();
         ListCourses listCourses = new ListCourses();
+        List<Subjects> all;
 
-        List<Subjects> all = daoSubject.getAll();
+        String filter = request.getParameter("filter");
+        if (filter != null) {
+            all = daoSubject.getAllFiltered(filter);
+        } else {
+            all = daoSubject.getAll();
+        }
         Collections.sort(all, Comparator.comparing(Subjects::getID));
         listCourses.setCoursesList(all);
         request.setAttribute("listCourses", listCourses);

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@WebServlet(name = "ServletProfessors", value = "/ServletProfessors")
+@WebServlet(name = "ServletProfessors", value = "/ServletProfessors/")
 public class ServletProfessors extends HttpServlet {
     @Override
     public void init() {
@@ -21,15 +21,21 @@ public class ServletProfessors extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoProfessor daoProfessor = new DaoProfessor();
         ListProfessors listProfessors = new ListProfessors();
+        List<Professors> all;
 
-        List<Professors> all = daoProfessor.getAll();
+        String filter = request.getParameter("filter");
+        if (filter != null) {
+            all = daoProfessor.getAllFiltered(filter);
+        } else {
+            all = daoProfessor.getAll();
+        }
         Collections.sort(all, (o1, o2) -> o1.getID().compareTo(o2.getID()));
         listProfessors.setProfessorsList(all);
         request.setAttribute("listProfessors", listProfessors);
 
         daoProfessor.closeEntityManager();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/professors.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/professors.jsp");
         dispatcher.forward(request, response);
     }
 
