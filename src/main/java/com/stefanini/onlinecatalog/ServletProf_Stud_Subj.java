@@ -1,20 +1,26 @@
 package com.stefanini.onlinecatalog;
 
 import com.stefanini.onlinecatalog.dao.DaoProf_Stud_Subj;
+import com.stefanini.onlinecatalog.dao.DaoProfessor;
+import com.stefanini.onlinecatalog.dao.DaoSubject;
+import com.stefanini.onlinecatalog.entity.ListCourses;
 import com.stefanini.onlinecatalog.entity.Prof_Stud_Subj;
+import com.stefanini.onlinecatalog.entity.Professors;
+import com.stefanini.onlinecatalog.entity.Subjects;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @WebServlet(name = "ServletProf_Stud_Subj", value = "/ServletProf_Stud_Subj")
 public class ServletProf_Stud_Subj extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DaoProf_Stud_Subj daoProf_stud_subj = new DaoProf_Stud_Subj();
-        Prof_Stud_Subj prof_stud_subj = daoProf_stud_subj.ifExist();
 
         /*//How to save an grade object into DB
         if(prof_stud_subj != null){
@@ -39,23 +45,42 @@ public class ServletProf_Stud_Subj extends HttpServlet {
         daoProf_stud_subj.update(prof_stud_subj);*/
 
 
-        PrintWriter writer = response.getWriter();
-        writer.println("<html>");
-        writer.println("<head>");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Prof_stud_subj.jsp");
+        dispatcher.forward(request, response);
 
-            writer.println("<h>inserted!!!");
-
-
-            writer.println("<br>");
-            writer.println("</h>");
-
-        writer.println("</head>");
-        writer.println("</html>");
-daoProf_stud_subj.close();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        DaoProf_Stud_Subj daoProf_stud_subj = new DaoProf_Stud_Subj();
+        String param = request.getParameter("delete");
 
+        if (request.getParameter("newGrade") != null) {
+            Prof_Stud_Subj profStudSubj=null;
+            Integer subj = Integer.parseInt(request.getParameter("SubjectID"));
+            Integer stud = Integer.parseInt(request.getParameter("StudentID"));
+            Integer prof = Integer.parseInt(request.getParameter("ProfessorID"));
+            String grade = request.getParameter("Grade");
+            profStudSubj = daoProf_stud_subj.ifExist(subj, stud, prof, Float.parseFloat(grade));
+            if (profStudSubj != null) {
+                daoProf_stud_subj.save(profStudSubj);
+            } else {
+                System.out.println("Object is NULL and can not be persist");
+            }
+        } else if (param != null) {
+            doDelete(request, response);
+        }
+
+
+    } /*else if (request.getParameter("id") != null) {
+            doPut(request, response);*/
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+        DaoProf_Stud_Subj daoProf_stud_subj = new DaoProf_Stud_Subj();
+        Prof_Stud_Subj p =  daoProf_stud_subj.find(Integer.valueOf(request.getParameter("delete")));
+        daoProf_stud_subj.delete(p);
+        daoProf_stud_subj.close();
+        response.sendRedirect("ServletProf_Stud_Subj");
     }
-}
+    }
+

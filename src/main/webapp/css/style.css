@@ -1,0 +1,29 @@
+.navbar {
+    height: 60px !important;
+}
+
+.center_brown {
+    text-align: center;
+    color: brown;
+}
+
+.my_list {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.align-right {
+    text-align: right;
+}
+
+.float-right {
+    float: right;
+}
+
+.register {
+    text-align: left;
+    margin-left: 10%;
+}
+
+a {
+    text-decoration: none;
+}

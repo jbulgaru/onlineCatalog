@@ -1,12 +1,15 @@
 package com.stefanini.onlinecatalog.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
 public class Professors {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO )
+   // @GenericGenerator( name = "generator" ,strategy = "increment")
+    @Column(name = "ID", nullable = false)
     Integer ID;
     @Column(name = "FirstName", length = 48, nullable = false)
     String firstName;

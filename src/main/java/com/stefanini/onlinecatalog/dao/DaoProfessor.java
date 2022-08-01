@@ -1,7 +1,8 @@
 package com.stefanini.onlinecatalog.dao;
 
-import com.stefanini.onlinecatalog.JpaService;
+import com.stefanini.onlinecatalog.JpaServiceW;
 import com.stefanini.onlinecatalog.entity.Professors;
+import com.stefanini.onlinecatalog.entity.Students;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,8 +10,9 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class DaoProfessor implements DAO<Professors> {
-    EntityManager entityManager = JpaService.getInstance();
-
+    private static JpaServiceW jpaServiceW = JpaServiceW.getInstance();
+    private EntityManagerFactory entityManagerFactory = jpaServiceW.getEntityManagerFactory();
+    private EntityManager entityManager = entityManagerFactory.createEntityManager();
     @Override
     public void save(Professors professor) {
         try {
@@ -40,12 +42,14 @@ public class DaoProfessor implements DAO<Professors> {
         Query query = entityManager.createQuery("SELECT c FROM Professors c", Professors.class);
         return query.getResultList();
     }
-
+    public Professors find(Integer id){
+        Professors p =  entityManager.find(Professors.class, id);
+        return p;
+    }
     @Override
     public void update(Professors p) {
         executeInsideTransaction(entityManager -> entityManager.merge(p));
     }
-
 
     @Override
     public void delete(Professors p) {
@@ -67,9 +71,5 @@ public class DaoProfessor implements DAO<Professors> {
     public void closeEntityManager() {
         if (entityManager != null)
             entityManager.close();
-    }
-    public Professors find(Integer id){
-        Professors professor =  entityManager.find(Professors.class, id);
-        return professor;
     }
 }
