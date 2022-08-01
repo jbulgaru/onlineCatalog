@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@WebServlet(name = "ServletProfessors", value = "/ServletProfessors/")
+@WebServlet(name = "ServletProfessors", value = "/ServletProfessors")
 public class ServletProfessors extends HttpServlet {
     @Override
     public void init() {
