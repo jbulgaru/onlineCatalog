@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,21 +44,31 @@ public class ServletProfessors extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoProfessor daoProfessor = new DaoProfessor();
 
-        if (request.getParameter("delete") != null) {
-            doDelete(request, response);
-        } else if (request.getParameter("id") != null) {
-            doPut(request, response);
-        } else {
-            String firstName = request.getParameter("firstName");
-            String lastName = request.getParameter("lastName");
-            String email = request.getParameter("email");
-            Professors professor = new Professors(firstName, lastName, email);
-            daoProfessor.save(professor);
+        if (Arrays.stream(request.getCookies()).anyMatch(c -> c.getName().equals("logged"))) {
 
-            daoProfessor.closeEntityManager();
-            response.sendRedirect("ServletProfessors");
+            if (request.getParameter("delete") != null) {
+                doDelete(request, response);
+            } else if (request.getParameter("id") != null) {
+                doPut(request, response);
+            } else {
+                String firstName = request.getParameter("firstName");
+                String lastName = request.getParameter("lastName");
+                String email = request.getParameter("email");
+                Professors professor = new Professors(firstName, lastName, email);
+                daoProfessor.save(professor);
+
+                daoProfessor.closeEntityManager();
+                response.sendRedirect("ServletProfessors");
+            }
+        } else {
+            String urlToReturn = request.getHeader("Referer").substring(21);
+            request.getSession().setAttribute("urlToReturn", urlToReturn);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/login.jsp");
+            dispatcher.forward(request, response);
         }
     }
+
 
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

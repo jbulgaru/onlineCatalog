@@ -6,13 +6,9 @@ import javax.persistence.*;
 public class Professors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     Integer ID;
-    @Column(name = "FirstName", length = 48, nullable = false)
     String firstName;
-    @Column(name = "LastName", length = 48, nullable = false)
     String lastName;
-    @Column(name = "email", length = 82, nullable = false)
     String email;
 
     public Professors() {

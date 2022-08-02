@@ -13,8 +13,8 @@ import java.io.PrintWriter;
 public class ServletProf_Stud_Subj extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DaoProf_Stud_Subj daoProf_stud_subj = new DaoProf_Stud_Subj();
-        Prof_Stud_Subj prof_stud_subj = daoProf_stud_subj.ifExist();
+//        DaoProf_Stud_Subj daoProf_stud_subj = new DaoProf_Stud_Subj();
+//        Prof_Stud_Subj prof_stud_subj = daoProf_stud_subj.ifExist();
 
         /*//How to save an grade object into DB
         if(prof_stud_subj != null){
@@ -39,19 +39,19 @@ public class ServletProf_Stud_Subj extends HttpServlet {
         daoProf_stud_subj.update(prof_stud_subj);*/
 
 
-        PrintWriter writer = response.getWriter();
-        writer.println("<html>");
-        writer.println("<head>");
-
-            writer.println("<h>inserted!!!");
-
-
-            writer.println("<br>");
-            writer.println("</h>");
-
-        writer.println("</head>");
-        writer.println("</html>");
-daoProf_stud_subj.close();
+//        PrintWriter writer = response.getWriter();
+//        writer.println("<html>");
+//        writer.println("<head>");
+//
+//            writer.println("<h>inserted!!!");
+//
+//
+//            writer.println("<br>");
+//            writer.println("</h>");
+//
+//        writer.println("</head>");
+//        writer.println("</html>");
+//daoProf_stud_subj.close();
     }
 
     @Override

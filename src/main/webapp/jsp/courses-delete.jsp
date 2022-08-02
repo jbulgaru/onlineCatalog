@@ -22,7 +22,7 @@
 <h3 class="center_brown">Delete Course data</h3>
 <br/>
 <div class="mx-auto col-lg-3">
-    <form action="/OnlineCatalog/ServletCourses" method="post">
+    <form action="/OnlineCatalog-1.0-SNAPSHOT/ServletCourses" method="post">
         <input name='id' type='hidden' value=<%=course.getID()%>>
         <input name='delete' type='hidden' value="true">
         <div class="form-group">
@@ -34,7 +34,7 @@
         <div><p class="center_brown">Are you sure you want to delete this Course ?</p></div>
         <div>
             <input class="btn btn-outline-danger btn-sm" name='Delete' type='submit' value="Delete"/>
-            <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog/ServletCourses">Cancel</a>
+            <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog-1.0-SNAPSHOT/ServletCourses">Cancel</a>
         </div>
     </form>
 </div>
