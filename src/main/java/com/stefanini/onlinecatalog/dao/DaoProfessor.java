@@ -2,7 +2,6 @@ package com.stefanini.onlinecatalog.dao;
 
 import com.stefanini.onlinecatalog.JpaServiceW;
 import com.stefanini.onlinecatalog.entity.Professors;
-import com.stefanini.onlinecatalog.entity.Students;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,9 +9,10 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class DaoProfessor implements DAO<Professors> {
-    private static JpaServiceW jpaServiceW = JpaServiceW.getInstance();
-    private EntityManagerFactory entityManagerFactory = jpaServiceW.getEntityManagerFactory();
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
+    private static final JpaServiceW jpaServiceW = JpaServiceW.getInstance();
+    private final EntityManagerFactory entityManagerFactory = jpaServiceW.getEntityManagerFactory();
+    private final EntityManager entityManager = entityManagerFactory.createEntityManager();
+
     @Override
     public void save(Professors professor) {
         try {
@@ -42,11 +42,15 @@ public class DaoProfessor implements DAO<Professors> {
         Query query = entityManager.createQuery("SELECT c FROM Professors c", Professors.class);
         return query.getResultList();
     }
-    public Professors find(Integer id){
-        Professors p =  entityManager.find(Professors.class, id);
-        return p;
+
+    public List<Professors> getAllFiltered(String q) {
+        Query query = entityManager.createQuery(
+                        "SELECT p FROM Professors p WHERE lower(CONCAT(p.firstName, p.lastName)) LIKE ?1", Professors.class)
+                .setParameter(1, '%' + q.toLowerCase() + '%');
+        return query.getResultList();
     }
-    @Override
+
+
     public void update(Professors p) {
         executeInsideTransaction(entityManager -> entityManager.merge(p));
     }
@@ -68,6 +72,7 @@ public class DaoProfessor implements DAO<Professors> {
             System.out.println(e.getMessage());
         }
     }
+
     public void closeEntityManager() {
         if (entityManager != null)
             entityManager.close();

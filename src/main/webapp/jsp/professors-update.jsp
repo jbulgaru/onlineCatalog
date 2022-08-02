@@ -22,20 +22,20 @@
 <h3 class="center_brown">Update Professor data</h3>
 <br/>
 <div class="mx-auto col-lg-3">
-    <form action="/OnlineCatalog/ServletProfessors" method="post">
+    <form action="/OnlineCatalog-1.0-SNAPSHOT/ServletProfessors" method="post">
         <input class="form-control" name='id' type='hidden' value=<%=p.getID()%>><br/>
         <div class="form-group">
-            <input class="form-control" name='firstName' type='text' value=<%=p.getFirstName()%>><br/>
+            <input class="form-control" name='firstName' type='text' value="<%=p.getFirstName()%>"><br/>
         </div>
         <div class="form-group">
-            <input class="form-control" name='lastName' type='text' value=<%=p.getLastName()%>><br/>
+            <input class="form-control" name='lastName' type='text' value="<%=p.getLastName()%>"><br/>
         </div>
         <div class="form-group">
-            <input class="form-control" name='email' type='email' value=<%=p.getEmail()%>><br/>
+            <input class="form-control" name='email' type='email' value="<%=p.getEmail()%>"><br/>
         </div>
         <div>
             <input class="btn btn-outline-success btn-sm" type='submit' value="Update"/>
-            <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog/ServletProfessors">Cancel</a>
+            <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog-1.0-SNAPSHOT/ServletProfessors">Cancel</a>
         </div>
     </form>
 </div>

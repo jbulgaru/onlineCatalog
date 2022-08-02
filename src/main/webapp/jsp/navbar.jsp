@@ -13,13 +13,16 @@
 
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/OnlineCatalog">Home</a>
+        <a class="navbar-brand" href="/OnlineCatalog-1.0-SNAPSHOT">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                       href="/OnlineCatalog-1.0-SNAPSHOT/ServletProf_Stud_Subj">Catalog</a>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
@@ -33,6 +36,8 @@
                         <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-grade.jsp">New grade</a></li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/OnlineCatalog-1.0-SNAPSHOT/ServletStudents">Students</a>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
@@ -52,11 +57,11 @@
                         Courses
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletCourses">Courses List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletCourses">Courses List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-course.jsp">New Course</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-course.jsp">New Course</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -65,17 +70,24 @@
                         Professors
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletProfessors">Professors List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletProfessors">Professors List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-professor.jsp">New Professor</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-professor.jsp">New Professor</a>
+                        </li>
                     </ul>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" role="search" method="get" action="?q=filter">
+                <input class="form-control me-2" type="search" name="filter" placeholder="Search"
+                       aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            <div class="ms-2 btn btn-outline-secondary">
+                <% Boolean logged = Arrays.stream(request.getCookies()).anyMatch(c -> c.getName().equals("logged"));%>
+                <%=logged ? Arrays.stream(request.getCookies()).filter(c ->
+                        c.getName().equals("logged")).findFirst().get().getValue() : "Sign In"%>
+            </div>
         </div>
     </div>
 </nav>

@@ -2,7 +2,7 @@ package com.stefanini.onlinecatalog.dao;
 
 
 import com.stefanini.onlinecatalog.JpaServiceW;
-import com.stefanini.onlinecatalog.entity.Students;
+import com.stefanini.onlinecatalog.entity.Professors;
 import com.stefanini.onlinecatalog.entity.Subjects;
 
 import javax.persistence.*;
@@ -64,10 +64,7 @@ public class DaoSubject implements DAO<Subjects> {
             System.out.println(e.getMessage());
         }
     }
-    public Subjects find(Integer id){
-        Subjects s =  entityManager.find(Subjects.class, id);
-        return s;
-    }
+
 
     @Override
     public void delete(Subjects s) {
@@ -98,5 +95,12 @@ public class DaoSubject implements DAO<Subjects> {
     public void closeEntityManager() {
         if (entityManager != null)
             entityManager.close();
+    }
+
+    public List<Subjects> getAllFiltered(String q) {
+        Query query = entityManager.createQuery(
+                        "SELECT s FROM Subjects s WHERE lower(s.name) LIKE ?1", Subjects.class)
+                .setParameter(1, '%' + q.toLowerCase() + '%');
+        return query.getResultList();
     }
 }

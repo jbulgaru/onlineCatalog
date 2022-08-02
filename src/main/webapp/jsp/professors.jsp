@@ -11,10 +11,9 @@
 <head>
     <title>Professors</title>
 </head>
-<jsp:include page="/jsp/navbar.jsp"/>
 <body>
+<jsp:include page="/jsp/navbar.jsp"/>
 <jsp:useBean id="listProfessors" class="com.stefanini.onlinecatalog.entity.ListProfessors" scope="request"/>
-
 <div class="my_list">
     <h2 class="center_brown">Professors List: <%=listProfessors.getSize()%> items</h2>
     <table class="table table-hover">
