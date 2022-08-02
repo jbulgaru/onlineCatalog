@@ -1,9 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.stefanini.onlinecatalog.entity.ListCourses" %>
 <%@ page import="com.stefanini.onlinecatalog.entity.Prof_Stud_Subj" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.stefanini.onlinecatalog.dao.DaoProf_Stud_Subj" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -35,8 +33,8 @@
         <tr>
             <th></th>
             <th>ID   Name</th>
-            <th>ID   Firstname  Lastname</th>
-            <th>ID   Firstname  Lastname</th>
+            <th>ID   Fname  Lname</th>
+            <th>ID   Fname  Lname</th>
             <th></th>
             <th class="align-right"></th>
         </tr>
@@ -48,7 +46,7 @@
             <tr>
                 <th>${element.ID}</th>
                 <td>${element.subjectID.ID}:      ${element.subjectID.name}:  </td>
-                <td>${element.subjectID.ID}:      ${element.studentID.firstName}:      ${element.studentID.lastName}</td>
+                <td>${element.studentID.ID}:      ${element.studentID.firstName}:      ${element.studentID.lastName}</td>
                 <td>${element.professorID.ID}:    ${element.professorID.firstName}:    ${element.professorID.lastName}</td>
                 <td>${element.grade}</td>
                 <td class="align-right">

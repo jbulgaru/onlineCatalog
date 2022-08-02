@@ -17,27 +17,60 @@ import java.util.List;
 public class ServletStudents extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DaoStudent daoStudent = new DaoStudent();
-        daoStudent.getBursieriDeMerit();
-        daoStudent.getGrantHolders();
-        List<Students> studentsList = daoStudent.getAll();
-        daoStudent.close();
-        //daoStudent.close();
-        PrintWriter writer = response.getWriter();
-        writer.println("<html>");
-        writer.println("<head>");
-        for (int i = 0; i < studentsList.size(); i++) {
-            writer.println("<h>");
-            writer.println(studentsList.get(i).toString());
-            writer.println("<br>");
-            writer.println("</h>");
-        }
-        writer.println("</head>");
-        writer.println("</html>");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/students.jsp");
+        dispatcher.forward(request, response);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String method = request.getParameter("update");
+        if(method != null){
+            doPut(request, response);
+        } else if (request.getParameter("delete") != null) {
+            doDelete(request, response);
+        } else if (request.getParameter("newStudent") != null) {
+            DaoStudent daoStudent = new DaoStudent();
+            Students student = new Students();
+            student.setGrantHolder(request.getParameter("GrantHolder"));
+            student.setFirstName(request.getParameter("FirstName"));
+            student.setLastName(request.getParameter("LastName"));
+            student.setEmail(request.getParameter("Email"));
+            try{
+                daoStudent.save(student);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            response.sendRedirect("ServletStudents");
+        }
+    }
+    @Override
+    protected  void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        DaoStudent daoStudent = new DaoStudent();
+        Students student = daoStudent.find(Integer.valueOf(request.getParameter("delete")));
+        try{
+            daoStudent.delete(student);
+        }catch (Exception e){
+            System.out.println("\n\nConstraint error when trying to remove student entity!!\n\n\n");
+            e.printStackTrace();
+        }
+        daoStudent.close();
+        response.sendRedirect("ServletStudents");
 
+    }
+    @Override
+    protected  void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        DaoStudent daoStudent = new DaoStudent();
+        Students student = daoStudent.find(Integer.valueOf(request.getParameter("update")));
+        student.setFirstName(request.getParameter("FirstName"));
+        student.setLastName(request.getParameter("LastName"));
+        student.setEmail(request.getParameter("Email"));
+        student.setGrantHolder(request.getParameter("GrantHolder"));
+        try{
+            daoStudent.update(student);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        response.sendRedirect("ServletStudents");
     }
 }

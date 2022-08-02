@@ -17,9 +17,7 @@ public class DaoStudent implements  DAO<Students> {
 
     @Override
     public List<Students> getAll() {
-
         Query query = entityManager.createQuery("SELECT c FROM Students c", Students.class);
-
         return query.getResultList() ;
     }
     /*public List<Students>  groupStudentsBySubjects() {
@@ -51,6 +49,7 @@ public class DaoStudent implements  DAO<Students> {
     @Override
     public void delete(Students students) {
         entityManager.getTransaction().begin();
+        System.out.println(students);
         Students student = entityManager.merge(students);
         entityManager.remove(student);
         entityManager.getTransaction().commit();
@@ -62,9 +61,6 @@ public class DaoStudent implements  DAO<Students> {
                 "JOIN FETCH  Prof_Stud_Subj Prof " +
                 "ON Prof.ID = s.ID and Prof.grade >= 9 ORDER by Prof.grade desc", Students.class);
         List<Students> students =  query.getResultList();
-       /* for (int i = 0; i < students.size(); i++) {
-            System.out.println(students.get(i).toString());
-        }*/
         entityManager.getTransaction().commit();
         return students;
     }
@@ -73,9 +69,7 @@ public class DaoStudent implements  DAO<Students> {
         entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("SELECT s from Students s where s.grantHolder = 'y'", Students.class);
         List<Students> students =  query.getResultList();
-        /*for (int i = 0; i < students.size(); i++) {
-            System.out.println(students.get(i).toString());
-        }*/
+
         entityManager.getTransaction().commit();
         return students;
     }

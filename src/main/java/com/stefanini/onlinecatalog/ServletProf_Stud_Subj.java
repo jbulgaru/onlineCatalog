@@ -2,11 +2,9 @@ package com.stefanini.onlinecatalog;
 
 import com.stefanini.onlinecatalog.dao.DaoProf_Stud_Subj;
 import com.stefanini.onlinecatalog.dao.DaoProfessor;
+import com.stefanini.onlinecatalog.dao.DaoStudent;
 import com.stefanini.onlinecatalog.dao.DaoSubject;
-import com.stefanini.onlinecatalog.entity.ListCourses;
-import com.stefanini.onlinecatalog.entity.Prof_Stud_Subj;
-import com.stefanini.onlinecatalog.entity.Professors;
-import com.stefanini.onlinecatalog.entity.Subjects;
+import com.stefanini.onlinecatalog.entity.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -67,13 +65,14 @@ public class ServletProf_Stud_Subj extends HttpServlet {
             } else {
                 System.out.println("Object is NULL and can not be persist");
             }
+            response.sendRedirect("ServletProf_Stud_Subj");
         } else if (param != null) {
             doDelete(request, response);
         }
-
-
-    } /*else if (request.getParameter("id") != null) {
-            doPut(request, response);*/
+        else if (request.getParameter("update") != null) {
+            doPut( request,  response);
+        }
+    }
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         DaoProf_Stud_Subj daoProf_stud_subj = new DaoProf_Stud_Subj();
@@ -82,5 +81,34 @@ public class ServletProf_Stud_Subj extends HttpServlet {
         daoProf_stud_subj.close();
         response.sendRedirect("ServletProf_Stud_Subj");
     }
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws  IOException{
+        DaoProf_Stud_Subj daoProf_stud_subj = new DaoProf_Stud_Subj();
+        DaoProfessor daoProfessor= new DaoProfessor();
+        DaoStudent daoStudent = new DaoStudent();
+        DaoSubject daoSubject = new DaoSubject();
+        Prof_Stud_Subj profStudSubj;
+        try{
+            profStudSubj = daoProf_stud_subj.find(Integer.valueOf(request.getParameter("update")));
+            Professors professor = daoProfessor.find(Integer.valueOf(request.getParameter("ProfessorID")));
+            Subjects subject = daoSubject.find(Integer.valueOf(request.getParameter("SubjectID")));
+            Students student = daoStudent.find(Integer.valueOf(request.getParameter("StudentID")));
+
+            profStudSubj.setProfessorID(professor);
+            profStudSubj.setStudentID(student);
+            profStudSubj.setSubjectID(subject);
+            profStudSubj.setGrade(Float.parseFloat(request.getParameter("Grade")));
+
+            daoProf_stud_subj.update(profStudSubj);
+            daoProf_stud_subj.close();
+
+        }
+        catch (Exception e){
+            System.out.println("\n\nError when trying to update grade!!!\n\n");
+            e.printStackTrace();
+        }
+
+        response.sendRedirect("ServletProf_Stud_Subj");
     }
+}
 

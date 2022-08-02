@@ -18,7 +18,6 @@
 <div class="mx-auto col-lg-3">
     <form action="/OnlineCatalog/ServletProf_Stud_Subj" method="post">
         <input name='delete' type='hidden' value=<%=grade.getID()%>>
-
         <div class="form-group">
             <input class="form-control" name='SubjectID' type='text' value=<%=grade.getSubjectID().getName()%>><br/>
         </div>

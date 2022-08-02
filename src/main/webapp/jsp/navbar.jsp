@@ -23,7 +23,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        Registru
+                        Catalog
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/OnlineCatalog/ServletProf_Stud_Subj">List grades</a></li>
@@ -36,14 +36,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        Courses
+                        Students
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletCourses">Courses List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletStudents">Students List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-course.jsp">New Course</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-student.jsp">New Student</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
