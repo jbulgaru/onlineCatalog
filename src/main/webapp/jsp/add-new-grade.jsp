@@ -16,7 +16,7 @@
 <br/>
 
 <div class="mx-auto col-lg-3">
-    <form action="/OnlineCatalog/ServletProf_Stud_Subj" method="post">
+    <form action="/OnlineCatalog-1.0-SNAPSHOT/ServletProf_Stud_Subj" method="post">
         <input class="form-control" name='newGrade' type='hidden' value="newGrade"><br/>
         <div class="form-group">
             <input class="form-control" name='SubjectID' type='text' placeholder="Subject ID"/><br/>
@@ -32,7 +32,7 @@
         </div>
         <div>
             <input class="btn btn-outline-success btn-sm" name='Submit' type='submit'/>
-            <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog/ServletProf_Stud_Subj">Cancel</a>
+            <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog-1.0-SNAPSHOT/ServletProf_Stud_Subj">Cancel</a>
         </div>
     </form>
 </div>

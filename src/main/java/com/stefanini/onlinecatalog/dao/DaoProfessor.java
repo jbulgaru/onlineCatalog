@@ -2,6 +2,7 @@ package com.stefanini.onlinecatalog.dao;
 
 import com.stefanini.onlinecatalog.JpaServiceW;
 import com.stefanini.onlinecatalog.entity.Professors;
+import com.stefanini.onlinecatalog.entity.Students;
 
 import javax.persistence.*;
 import java.util.List;
@@ -72,7 +73,10 @@ public class DaoProfessor implements DAO<Professors> {
             System.out.println(e.getMessage());
         }
     }
-
+    public Professors find(Integer id){
+        Professors p =  entityManager.find(Professors.class, id);
+        return p;
+    }
     public void closeEntityManager() {
         if (entityManager != null)
             entityManager.close();

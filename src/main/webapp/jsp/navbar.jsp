@@ -1,3 +1,4 @@
+<%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,35 +21,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="/OnlineCatalog-1.0-SNAPSHOT/ServletProf_Stud_Subj">Catalog</a>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
                         Catalog
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletProf_Stud_Subj">List grades</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletProf_Stud_Subj">List grades</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-grade.jsp">New grade</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-grade.jsp">New grade</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/OnlineCatalog-1.0-SNAPSHOT/ServletStudents">Students</a>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
                         Students
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletStudents">Students List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletStudents">Students List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-student.jsp">New Student</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-student.jsp">New Student</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

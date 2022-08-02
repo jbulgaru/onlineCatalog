@@ -44,7 +44,10 @@ public class DaoSubject implements DAO<Subjects> {
     public Subjects getObj(Integer id) {
         return entityManager.find(Subjects.class, id);
     }
-
+    public Subjects find(Integer id){
+        Subjects p =  entityManager.find(Subjects.class, id);
+        return p;
+    }
     @Override
     public List<Subjects> getAll() {
         Query query = entityManager.createQuery("SELECT c FROM Subjects c", Subjects.class);
