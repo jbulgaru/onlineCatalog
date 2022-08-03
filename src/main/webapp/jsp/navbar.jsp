@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/OnlineCatalog-1.0-SNAPSHOT">Home</a>
+        <a class="navbar-brand" href="/OnlineCatalog">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,11 +28,11 @@
                         Catalog
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletProf_Stud_Subj">List grades</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletProf_Stud_Subj">List grades</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-grade.jsp">New grade</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-grade.jsp">New grade</a></li>
                     </ul>
                 </li>
 
@@ -42,11 +42,11 @@
                         Students
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletStudents">Students List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletStudents">Students List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-student.jsp">New Student</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-student.jsp">New Student</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -55,11 +55,11 @@
                         Courses
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletCourses">Courses List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletCourses">Courses List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-course.jsp">New Course</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-course.jsp">New Course</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -68,11 +68,11 @@
                         Professors
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletProfessors">Professors List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletProfessors">Professors List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-professor.jsp">New Professor</a>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-professor.jsp">New Professor</a>
                         </li>
                     </ul>
             </ul>
@@ -81,11 +81,21 @@
                        aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <div class="ms-2 btn btn-outline-secondary">
-                <% Boolean logged = Arrays.stream(request.getCookies()).anyMatch(c -> c.getName().equals("logged"));%>
+            <a class="ms-2 btn btn-outline-secondary" href="ServletLogin">
+                <%
+                    Cookie[] cookies = request.getCookies();
+                    Boolean logged = false;
+                    if (cookies != null) {
+                        for (Cookie cookie : cookies) {
+                            if (cookie.getName().equals("logged")) {
+                                logged = true;
+                            }
+                        }
+                    }
+                %>
                 <%=logged ? Arrays.stream(request.getCookies()).filter(c ->
                         c.getName().equals("logged")).findFirst().get().getValue() : "Sign In"%>
-            </div>
+            </a>
         </div>
     </div>
 </nav>

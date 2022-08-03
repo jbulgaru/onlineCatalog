@@ -31,7 +31,7 @@ public class ServletSign extends HttpServlet {
         daoUser.save(user);
 
         daoUser.closeEntityManager();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/OnlineCatalog-1.0-SNAPSHOT");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/OnlineCatalog");
         dispatcher.forward(request, response);
     }
 

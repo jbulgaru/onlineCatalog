@@ -31,11 +31,12 @@ public class ServletLogin extends HttpServlet {
         if (daoUser.checkCredentials(username, password)) {
             // set cookie which confirm logging in to application
             Cookie loggedCookie = new Cookie("logged", "The_Dark_Side_of_the_Moon");
-            loggedCookie.setMaxAge(20);
+            loggedCookie.setMaxAge(60);
             response.addCookie(loggedCookie);
 
             String previousURL = (String) request.getSession().getAttribute("urlToReturn");
-            response.sendRedirect(previousURL);
+            if (previousURL != null) response.sendRedirect(previousURL);
+            else response.sendRedirect("/OnlineCatalog");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/sign-in.jsp");
             dispatcher.forward(request, response);
@@ -43,19 +44,4 @@ public class ServletLogin extends HttpServlet {
 
     }
 
-    private String getHashPassword (String password) {
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16];
-        random.nextBytes(salt);
-        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
-        try {
-            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            byte[] hash = factory.generateSecret(spec).getEncoded();
-            return new String(hash);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidKeySpecException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
