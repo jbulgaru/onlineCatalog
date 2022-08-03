@@ -1,7 +1,7 @@
 package com.stefanini.onlinecatalog.XMLelements;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,9 @@
 package com.stefanini.onlinecatalog.XMLelements;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
+
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "grade")

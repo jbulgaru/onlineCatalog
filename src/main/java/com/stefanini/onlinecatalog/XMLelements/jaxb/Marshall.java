@@ -1,14 +1,11 @@
 package com.stefanini.onlinecatalog.XMLelements.jaxb;
 
 import com.stefanini.onlinecatalog.XMLelements.*;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.List;
-
 public class Marshall {
     public void marshall(Object obj, File file) throws JAXBException {
         try{
