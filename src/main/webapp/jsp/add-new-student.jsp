@@ -13,10 +13,10 @@
 </head>
 <jsp:include page="/jsp/navbar.jsp"/>
 <body>
-<h3 class="center_brown">Add new student</h3>
+<h3 class="center_brown">Add new Student</h3>
 <br/>
 <div class="mx-auto col-lg-3">
-    <form action="/OnlineCatalog-1.0-SNAPSHOT/ServletStudents" method="post">
+    <form action="/OnlineCatalog/ServletStudents" method="post">
         <input name='newStudent' type='hidden'>
         <div class="form-group">
             <input class="form-control" name='FirstName' type='text'  placeholder="FirstName"><br/>
@@ -30,10 +30,9 @@
         <div class="form-group">
             <input class="form-control" name='GrantHolder' type='text' placeholder="GrantHolder"><br/>
         </div>
-        <div><p class="center_brown">Are you sure you want to update this record ?</p></div>
         <div>
             <input class="btn btn-outline-danger btn-sm" name='add' type='submit' value="Add"/>
-            <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog-1.0-SNAPSHOT/ServletStudents">Cancel</a>
+            <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog/ServletStudents">Cancel</a>
         </div>
     </form>
 </div>

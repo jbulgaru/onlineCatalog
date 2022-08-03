@@ -15,7 +15,7 @@
 <h3 class="center_brown">Add New Professor View</h3>
 <br/>
 <div class="mx-auto col-lg-3">
-    <form action="/OnlineCatalog-1.0-SNAPSHOT/ServletProfessors" method="post">
+    <form action="/OnlineCatalog/ServletProfessors" method="post">
         <div class="form-group">
             <input class="form-control" name='firstName' type='text' placeholder="First Name"/><br/>
         </div>

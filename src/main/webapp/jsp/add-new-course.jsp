@@ -15,7 +15,7 @@
 <h3 class="center_brown">Add New Course</h3>
 <br/>
 <div class="mx-auto col-lg-3">
-    <form action="/OnlineCatalog-1.0-SNAPSHOT/ServletCourses" method="post">
+    <form action="/OnlineCatalog/ServletCourses" method="post">
         <div class="form-group">
             <input class="form-control" name='name' type='text' placeholder="Course Title"/><br/>
         </div>

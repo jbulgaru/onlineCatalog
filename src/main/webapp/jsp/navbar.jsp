@@ -1,5 +1,6 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +15,7 @@
 
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/OnlineCatalog-1.0-SNAPSHOT">Home</a>
+        <a class="navbar-brand" href="/OnlineCatalog">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,11 +29,11 @@
                         Catalog
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletProf_Stud_Subj">List grades</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletProf_Stud_Subj">List grades</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-grade.jsp">New grade</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-grade.jsp">New grade</a></li>
                     </ul>
                 </li>
 
@@ -42,11 +43,11 @@
                         Students
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletStudents">Students List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletStudents">Students List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-student.jsp">New Student</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-student.jsp">New Student</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -55,11 +56,11 @@
                         Courses
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletCourses">Courses List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletCourses">Courses List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-course.jsp">New Course</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-course.jsp">New Course</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -68,24 +69,34 @@
                         Professors
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/ServletProfessors">Professors List</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletProfessors">Professors List</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/OnlineCatalog-1.0-SNAPSHOT/jsp/add-new-professor.jsp">New Professor</a>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-professor.jsp">New Professor</a>
                         </li>
                     </ul>
             </ul>
-            <form class="d-flex" role="search" method="get" action="?q=filter">
+            <form class="d-flex my-auto" role="search" method="get" action="?q=filter">
                 <input class="form-control me-2" type="search" name="filter" placeholder="Search"
                        aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <div class="ms-2 btn btn-outline-secondary">
-              <%--<% Boolean logged = Arrays.stream(request.getCookies()).anyMatch(c -> c.getName().equals("logged"));%>
+            <%
+                Cookie[] cookies = request.getCookies();
+                Boolean logged = false;
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        if (cookie.getName().equals("logged")) {
+                            logged = true;
+                        }
+                    }
+                }
+            %>
+            <a class="ms-2 btn btn-outline-secondary" href="ServletLogin">
                 <%=logged ? Arrays.stream(request.getCookies()).filter(c ->
-                        c.getName().equals("logged")).findFirst().get().getValue() : "Sign In"%>--%>
-            </div>
+                        c.getName().equals("logged")).findFirst().get().getValue() : "Sign In"%>
+            </a>
         </div>
     </div>
 </nav>

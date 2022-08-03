@@ -5,10 +5,7 @@ import com.stefanini.onlinecatalog.entity.CatalogUser;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -51,9 +48,14 @@ public class DaoCatalogUser implements DAO<CatalogUser> {
     }
 
     public Boolean checkCredentials(String username, String hash) {
-        CatalogUser user = entityManager.createQuery(
-                        "SELECT u FROM CatalogUser u WHERE u.username LIKE ?1", CatalogUser.class)
-                .setParameter(1, username).getResultList().get(0);
+        CatalogUser user = null;
+        try {
+            user = Optional.ofNullable(entityManager.createQuery(
+                            "SELECT u FROM CatalogUser u WHERE u.username LIKE ?1", CatalogUser.class)
+                    .setParameter(1, username).getSingleResult()).orElse(null);
+        } catch (NoResultException noResultException) {
+            System.out.println(noResultException.getMessage());
+        }
         if (user != null) {
             return user.getPassword().equals(hash);
         }
@@ -94,7 +96,7 @@ public class DaoCatalogUser implements DAO<CatalogUser> {
             entityManager.close();
     }
 
-    private String getHashPassword (String password) {
+    private String getHashPassword(String password) {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
