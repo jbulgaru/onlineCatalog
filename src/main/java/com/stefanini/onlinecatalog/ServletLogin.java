@@ -23,12 +23,12 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DaoCatalogUser daoUser = new DaoCatalogUser();
+        DaoCatalogUser daoCatalogUser = new DaoCatalogUser();
         // check credentials
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        if (daoUser.checkCredentials(username, password)) {
+        if (daoCatalogUser.checkCredentials(username, password)) {
             // set cookie which confirm logging in to application
             Cookie loggedCookie = new Cookie("logged", "The_Dark_Side_of_the_Moon");
             loggedCookie.setMaxAge(60);

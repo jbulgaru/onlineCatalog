@@ -1,5 +1,6 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -76,23 +77,23 @@
                         </li>
                     </ul>
             </ul>
-            <form class="d-flex" role="search" method="get" action="?q=filter">
+            <form class="d-flex my-auto" role="search" method="get" action="?q=filter">
                 <input class="form-control me-2" type="search" name="filter" placeholder="Search"
                        aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <a class="ms-2 btn btn-outline-secondary" href="ServletLogin">
-                <%
-                    Cookie[] cookies = request.getCookies();
-                    Boolean logged = false;
-                    if (cookies != null) {
-                        for (Cookie cookie : cookies) {
-                            if (cookie.getName().equals("logged")) {
-                                logged = true;
-                            }
+            <%
+                Cookie[] cookies = request.getCookies();
+                Boolean logged = false;
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        if (cookie.getName().equals("logged")) {
+                            logged = true;
                         }
                     }
-                %>
+                }
+            %>
+            <a class="ms-2 btn btn-outline-secondary" href="ServletLogin">
                 <%=logged ? Arrays.stream(request.getCookies()).filter(c ->
                         c.getName().equals("logged")).findFirst().get().getValue() : "Sign In"%>
             </a>
