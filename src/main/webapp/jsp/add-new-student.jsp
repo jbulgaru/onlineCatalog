@@ -13,7 +13,7 @@
 </head>
 <jsp:include page="/jsp/navbar.jsp"/>
 <body>
-<h3 class="center_brown">Update Professor data</h3>
+<h3 class="center_brown">Add new student</h3>
 <br/>
 <div class="mx-auto col-lg-3">
     <form action="/OnlineCatalog-1.0-SNAPSHOT/ServletStudents" method="post">

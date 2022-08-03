@@ -54,6 +54,12 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-camel -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-activemq</artifactId>
+            <version>3.0.0</version>
+        </dependency>
 
     </dependencies>
 

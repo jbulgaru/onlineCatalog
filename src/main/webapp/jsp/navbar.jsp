@@ -82,9 +82,9 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <div class="ms-2 btn btn-outline-secondary">
-                <% Boolean logged = Arrays.stream(request.getCookies()).anyMatch(c -> c.getName().equals("logged"));%>
+              <%--<% Boolean logged = Arrays.stream(request.getCookies()).anyMatch(c -> c.getName().equals("logged"));%>
                 <%=logged ? Arrays.stream(request.getCookies()).filter(c ->
-                        c.getName().equals("logged")).findFirst().get().getValue() : "Sign In"%>
+                        c.getName().equals("logged")).findFirst().get().getValue() : "Sign In"%>--%>
             </div>
         </div>
     </div>

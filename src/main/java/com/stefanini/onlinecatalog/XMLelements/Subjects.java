@@ -1,15 +1,22 @@
 package com.stefanini.onlinecatalog.XMLelements;
 
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement(name ="subject")
+@XmlType(name = "subject", propOrder = {"ID","name", "room" })
+@XmlAccessorType(XmlAccessType.NONE)
 public class Subjects {
-    Integer ID;
-    String name;
-    Integer room;
 
+    Integer ID;
+
+    String name;
+
+    Integer room;
     public Subjects() {
     }
 
-    public Subjects(String name, Integer room) {
+    public Subjects(Integer id, String name, Integer room) {
+        this.ID = id;
         this.name = name;
         this.room = room;
     }
@@ -22,7 +29,7 @@ public class Subjects {
     public Integer getID() {
         return ID;
     }
-
+    @XmlAttribute(name = "id")
     public void setID(Integer ID) {
         this.ID = ID;
     }
@@ -30,7 +37,7 @@ public class Subjects {
     public String getName() {
         return name;
     }
-
+    @XmlElement(name = "name")
     public void setName(String name) {
         this.name = name;
     }
@@ -38,7 +45,7 @@ public class Subjects {
     public Integer getRoom() {
         return room;
     }
-
+    @XmlElement(name = "classroom")
     public void setRoom(Integer room) {
         this.room = room;
     }

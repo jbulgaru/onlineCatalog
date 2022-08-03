@@ -1,26 +1,24 @@
 package com.stefanini.onlinecatalog.XMLelements;
 
 
+import javax.xml.bind.annotation.*;
 
-
-
-
+@XmlRootElement(name ="Student")
+@XmlType(name = "student", propOrder = {"ID","firstName", "lastName", "email", "grantHolder" })
+@XmlAccessorType (XmlAccessType.NONE)
 public class Students {
 
-    Integer ID;
-
+    int ID;
     String firstName;
-
     String lastName;
-
     String email;
-
     String grantHolder;
 
     public Students() {}
 
-    public Students(String firstName, String lastName,
+    public Students(Integer id, String firstName, String lastName,
                     String email, String grantHolder) {
+        this.ID = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,15 +32,20 @@ public class Students {
         this.ID = student.getID();
     }
 
-    public Integer getID() {return ID;}
-    public void setID(Integer ID) {this.ID = ID;}
+    public int getID() {return ID;}
+    @XmlAttribute(name = "id")
+    public void setID(int ID) {this.ID = ID;}
     public String getFirstName() {return firstName;}
+    @XmlElement(name = "firstName")
     public void setFirstName(String firstName) {this.firstName = firstName;}
     public String getLastName() {return lastName;}
+    @XmlElement(name = "lastName")
     public void setLastName(String lastName) {this.lastName = lastName;}
     public String getEmail() {return email;}
+    @XmlElement(name = "email")
     public void setEmail(String email) {this.email = email;}
     public String getGrantHolder() {return grantHolder;}
+    @XmlElement(name = "grantHolder")
     public void setGrantHolder(String grantHolder) {this.grantHolder = grantHolder;}
 
     @Override

@@ -1,16 +1,17 @@
 package com.stefanini.onlinecatalog.XMLelements;
 
+import com.sun.xml.internal.txw2.annotation.XmlElement;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "grade")
 public class Prof_Stud_Subj {
 
     Integer ID;
-
     Students studentID;
-
     Professors professorID;
-
-   Subjects subjectID;
-
-
+    Subjects subjectID;
     Float grade;
 
 
@@ -31,7 +32,7 @@ public class Prof_Stud_Subj {
     public Integer getID() {
         return ID;
     }
-
+@XmlAttribute(name = "ID")
     public void setID(Integer ID) {
         this.ID = ID;
     }
@@ -39,7 +40,7 @@ public class Prof_Stud_Subj {
     public Students getStudentID() {
         return studentID;
     }
-
+    @XmlElement
     public void setStudentID(Students studentID) {
         this.studentID = studentID;
     }
@@ -47,15 +48,14 @@ public class Prof_Stud_Subj {
     public Professors getProfessorID() {
         return professorID;
     }
-
+    @XmlElement
     public void setProfessorID(Professors professorID) {
         this.professorID = professorID;
     }
-
     public Subjects getSubjectID() {
         return subjectID;
     }
-
+    @XmlElement
     public void setSubjectID(Subjects subjectID) {
         this.subjectID = subjectID;
     }
@@ -63,7 +63,7 @@ public class Prof_Stud_Subj {
     public Float getGrade() {
         return grade;
     }
-
+    @XmlElement
     public void setGrade(Float grade) {
         this.grade = grade;
     }

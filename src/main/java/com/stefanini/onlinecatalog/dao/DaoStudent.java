@@ -20,6 +20,10 @@ public class DaoStudent implements  DAO<Students> {
         Query query = entityManager.createQuery("SELECT c FROM Students c", Students.class);
         return query.getResultList() ;
     }
+    public List<Students> getAllGrantHolders() {
+        Query query = entityManager.createQuery("SELECT c FROM Students c where c.grantHolder='y'", Students.class);
+        return query.getResultList() ;
+    }
     /*public List<Students>  groupStudentsBySubjects() {
         Query query = entityManager.createNamedQuery("group students by subjects");
 

@@ -46,6 +46,10 @@
     </c:forEach>
     </tbody>
   </table>
+  <a href="jsp/downloadGrantHolders.jsp?save=grantHolders"
+     class="btn btn-outline-success btn-sm">Save GrantHolders</a>
+  <a href="jsp/downloadGrantHolders.jsp?save=genius"
+     class="btn btn-outline-success btn-sm">Save GrantHoldersPro</a>
 </div>
 </body>
 </html>
