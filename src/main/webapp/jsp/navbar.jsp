@@ -34,6 +34,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" href="/OnlineCatalog/jsp/add-new-grade.jsp">New grade</a></li>
+                        <li><a class="dropdown-item" href="/OnlineCatalog/ServletCatalogWithGradesLessThenFiveActiveMQ">Catalog [Grades < 5] -> ActiveMQ</a></li>
                     </ul>
                 </li>
 

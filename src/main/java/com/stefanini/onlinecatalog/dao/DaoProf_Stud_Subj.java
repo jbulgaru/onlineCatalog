@@ -27,6 +27,12 @@ public class DaoProf_Stud_Subj implements  DAO<Prof_Stud_Subj>{
         return list;
     }
 
+    public List<Prof_Stud_Subj> catalogWithGradesLessThenFive() {
+        Query query = entityManager.createQuery("SELECT c FROM Prof_Stud_Subj c where c.grade < 5", Prof_Stud_Subj.class);
+        List<Prof_Stud_Subj> list = query.getResultList();
+        return list;
+    }
+
     @Override
     public void save(Prof_Stud_Subj prof_stud_subj) {
         entityManager.getTransaction().begin();

@@ -17,12 +17,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-@WebServlet( name = "ServletStudentSaveGrantHoldersToXML", value = "/ServletStudentSaveGrantHoldersToXML")
+@WebServlet(name = "ServletStudentSaveGrantHoldersToXML", value = "/ServletStudentSaveGrantHoldersToXML")
 public class ServletStudentSaveGrantHoldersToXML extends HttpServlet {
-    static String path = "C:\\Users\\YBULHARU\\IdeaProjects\\OnlineCatalog\\src\\main\\resources\\XMLfileStudents.xml";
+    static String path = "C:\\Users\\VPARASCH\\IdeaProjects\\OnlineCatalog\\src\\main\\resources\\XMLfileStudents.xml";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/students.jsp");
         dispatcher.forward(req, resp);
 
@@ -30,30 +31,29 @@ public class ServletStudentSaveGrantHoldersToXML extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
 
-         if(req.getParameter("save").equals("grantHolders")){
-           try {
-               this.saveGrantHoldersToXML();
-               this.sendToActivemq("StudentsGrantHolders");
+        if (req.getParameter("save").equals("grantHolders")) {
+            try {
+                this.saveGrantHoldersToXML();
+                this.sendToActivemq("StudentsGrantHolders");
             } catch (JAXBException | JMSException e) {
-               throw new RuntimeException(e);
-           }
+                throw new RuntimeException(e);
+            }
+        } else if (req.getParameter("save").equals("genius")) {
+            try {
+                this.saveGrantHoldersGeniusToXML();
+                this.sendToActivemq("StudentsGrantHoldersPro");
+            } catch (JAXBException | JMSException e) {
+                throw new RuntimeException(e);
+            }
         }
-         else if(req.getParameter("save").equals("genius")){
-             try{
-                 this.saveGrantHoldersGeniusToXML();
-                 this.sendToActivemq("StudentsGrantHoldersPro");
-             }catch (JAXBException | JMSException e) {
-                 throw new RuntimeException(e);
-             }
-         }
         resp.sendRedirect("ServletStudents");
     }
 
     public void sendToActivemq(String queueNmae) throws JMSException, JAXBException {
         ReadXML readXML = new ReadXML(path);
-        String file =  readXML.readXMLfileByLine();
+        String file = readXML.readXMLfileByLine();
         MessageSender messageSender = new MessageSender(queueNmae, file);
         messageSender.start();
         messageSender.send();
@@ -74,6 +74,7 @@ public class ServletStudentSaveGrantHoldersToXML extends HttpServlet {
         marshall.marshall(element, file);
 
     }
+
     public void saveGrantHoldersGeniusToXML() throws JAXBException {
         DaoStudent daoStudent = new DaoStudent();
         Marshall marshall = new Marshall();

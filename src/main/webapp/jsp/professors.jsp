@@ -38,6 +38,8 @@
                        class="btn btn-outline-success btn-sm">Update</a>
                     <a href="jsp/professors-delete.jsp?ID=${element.ID}"
                        class="btn btn-outline-danger btn-sm">Delete</a>
+                    <a href="/OnlineCatalog/ServletActiveMQ?ID=${element.ID}"
+                       class="btn btn-outline-warning btn-sm">ActiveMQ</a>
                 </td>
             </tr>
         </c:forEach>

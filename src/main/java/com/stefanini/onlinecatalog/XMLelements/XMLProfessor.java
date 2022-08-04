@@ -1,38 +1,37 @@
-package com.stefanini.onlinecatalog.entity;
+package com.stefanini.onlinecatalog.XMLelements;
 
-import javax.persistence.*;
+import com.stefanini.onlinecatalog.entity.Professors;
 
-@Entity
-public class Professors {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    // @GenericGenerator( name = "generator" ,strategy = "increment")
-    @Column(name = "ID", nullable = false)
+import javax.xml.bind.annotation.*;
+
+
+@XmlRootElement(name ="professor")
+@XmlType(name = "xml_professor", propOrder = {"ID","firstName", "lastName", "email" })
+@XmlAccessorType(XmlAccessType.NONE)
+public class XMLProfessor {
+
     Integer ID;
-    @Column(name = "FirstName", length = 48, nullable = false)
+
     String firstName;
-    @Column(name = "LastName", length = 48, nullable = false)
+
     String lastName;
-    @Column(name = "email", length = 82, nullable = false)
+
     String email;
 
-    public Professors() {
+    public XMLProfessor() {
     }
 
-    public Professors(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public String getFullName() {
-        return firstName + " " + lastName;
+    public XMLProfessor(Professors p) {
+        this.firstName = p.getFirstName();
+        this.lastName = p.getLastName();
+        this.email = p.getEmail();
+        this.ID = p.getID();
     }
 
     public Integer getID() {
         return ID;
     }
-
+    @XmlAttribute(name = "id")
     public void setID(Integer ID) {
         this.ID = ID;
     }
@@ -40,7 +39,7 @@ public class Professors {
     public String getFirstName() {
         return firstName;
     }
-
+    @XmlElement(name = "firstName")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -48,7 +47,7 @@ public class Professors {
     public String getLastName() {
         return lastName;
     }
-
+    @XmlElement(name = "lastName")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -56,7 +55,7 @@ public class Professors {
     public String getEmail() {
         return email;
     }
-
+    @XmlElement(name = "Email")
     public void setEmail(String email) {
         this.email = email;
     }

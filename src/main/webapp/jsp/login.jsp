@@ -12,7 +12,7 @@
 </head>
 <jsp:include page="/jsp/navbar.jsp"/>
 <body>
-<h3 class="center_brown">You have to log in first...</h3>
+<h3 class="center_brown">...Log In...</h3>
 <br/>
 <div class="mx-auto col-lg-3">
   <form action="/OnlineCatalog/ServletLogin" method="post">
