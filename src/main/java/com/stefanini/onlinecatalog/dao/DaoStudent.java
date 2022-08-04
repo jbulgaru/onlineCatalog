@@ -63,7 +63,7 @@ public class DaoStudent implements  DAO<Students> {
         Query query = entityManager.createQuery("SELECT s " +
                 "FROM Students s " +
                 "JOIN FETCH  Prof_Stud_Subj Prof " +
-                "ON Prof.ID = s.ID and Prof.grade >= 9 ORDER by Prof.grade desc", Students.class);
+                "ON Prof.studentID = s.ID and Prof.grade >= 9 ORDER by Prof.grade desc", Students.class);
         List<Students> students =  query.getResultList();
         entityManager.getTransaction().commit();
         return students;
