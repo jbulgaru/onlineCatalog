@@ -6,6 +6,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.StringWriter;
+
 public class Marshall {
     public void marshall(Object obj, File file) throws JAXBException {
         try{
@@ -27,5 +29,19 @@ public class Marshall {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public <T>String marshallToString(T t) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(
+                XMLProfessor.class,
+                Prof_Stud_Subj.class);
+        Marshaller m = context.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        StringWriter sw = new StringWriter();
+        m.marshal(t, sw);
+
+        String result = sw.toString();
+        return result;
     }
 }

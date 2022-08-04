@@ -36,6 +36,10 @@ public class Students {
         this.email = email;
         this.grantHolder = grantHolder;
     }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
     public Integer getID() {return ID;}
     public void setID(Integer ID) {this.ID = ID;}
     public String getFirstName() {return firstName;}

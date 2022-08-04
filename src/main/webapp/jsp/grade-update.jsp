@@ -14,10 +14,8 @@
     DaoProf_Stud_Subj daoProfStudSubj = new DaoProf_Stud_Subj();
     String id = request.getParameter("ID");
     Prof_Stud_Subj profStudSubj = daoProfStudSubj.find(Integer.valueOf(id));
-    System.out.println(profStudSubj);
-
 %>
-<h3 class="center_brown">Update Professor data</h3>
+<h3 class="center_brown">Update Catalog</h3>
 <br/>
 <div class="mx-auto col-lg-3">
     <form action="/OnlineCatalog/ServletProf_Stud_Subj" method="post">
