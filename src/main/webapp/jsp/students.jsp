@@ -41,6 +41,8 @@
              class="btn btn-outline-success btn-sm">Update</a>
           <a href="jsp/students-delete.jsp?ID=${el.ID}"
              class="btn btn-outline-danger btn-sm">Delete</a>
+          <a href="jsp/studentProfile.jsp?studentId=${el.ID}"
+             class="btn btn-outline-info btn-sm">Details</a>
         </td>
       </tr>
     </c:forEach>
@@ -50,6 +52,7 @@
      class="btn btn-outline-success btn-sm">Save GrantHolders</a>
   <a href="jsp/downloadGrantHolders.jsp?save=genius"
      class="btn btn-outline-success btn-sm">Save GrantHoldersPro</a>
+
 </div>
 </body>
 </html>

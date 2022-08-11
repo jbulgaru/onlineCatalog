@@ -21,9 +21,6 @@ public class DaoProf_Stud_Subj implements  DAO<Prof_Stud_Subj>{
     public List<Prof_Stud_Subj> getAll() {
         Query query = entityManager.createQuery("SELECT c FROM Prof_Stud_Subj c", Prof_Stud_Subj.class);
         List<Prof_Stud_Subj> list = query.getResultList();
-        /*for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }*/
         return list;
     }
 
@@ -36,7 +33,12 @@ public class DaoProf_Stud_Subj implements  DAO<Prof_Stud_Subj>{
     @Override
     public void save(Prof_Stud_Subj prof_stud_subj) {
         entityManager.getTransaction().begin();
-        entityManager.persist(prof_stud_subj);
+        //Grade validation
+        if(prof_stud_subj.getGrade() >= 1 && prof_stud_subj.getGrade() <=10){
+            entityManager.persist(prof_stud_subj);
+        }else{
+            System.out.println("\n\nPlease enter a valid grade  [1, 10]\n");
+        }
         entityManager.getTransaction().commit();
     }
 
@@ -61,15 +63,6 @@ public class DaoProf_Stud_Subj implements  DAO<Prof_Stud_Subj>{
         DaoSubject daoSubject = new DaoSubject();
         DaoProf_Stud_Subj daoProf_stud_subj = new DaoProf_Stud_Subj();
 
-        /*System.out.println("Enter grade: ");
-        Float grade = sc.nextFloat();
-        System.out.println("Enter professor ID: ");
-        Integer pID = sc.nextInt();
-        System.out.println("Enter student ID: ");
-        Integer sID = sc.nextInt();
-        System.out.println("Enter subject ID: ");
-        Integer subjID = sc.nextInt();*/
-
         Object[] gradeData ={null, null, null};
         try {
             gradeData[0] = daoStudent.find(stud);
@@ -93,6 +86,20 @@ public class DaoProf_Stud_Subj implements  DAO<Prof_Stud_Subj>{
     public Prof_Stud_Subj find(Integer id){
         Prof_Stud_Subj obj =  entityManager.find(Prof_Stud_Subj.class, id);
         return obj;
+    }
+    public void deleteStudentsByIDs(int idStudent) {
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("DELETE FROM Prof_Stud_Subj o WHERE o.studentID = "+ idStudent);
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
+    }
+
+    public List<Prof_Stud_Subj> findAllCoursesByStudentId(int idStudent) {
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("select c from Prof_Stud_Subj c where c.studentID = " + idStudent);
+        query.getResultList().forEach(System.out::println);
+        entityManager.getTransaction().commit();
+        return query.getResultList();
     }
     public void close(){
         entityManager.close();

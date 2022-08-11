@@ -24,12 +24,12 @@
 <br/>
 <div class="mx-auto col-lg-3">
     <form action="/OnlineCatalog/ServletCourses" method="post">
-        <input class="form-control" name='id' type='hidden' value=<%=course.getID()%>><br/>
+        <input class="form-control" name='id' type='hidden' readonly value=<%=course.getID()%>><br/>
         <div class="form-group">
-            <input class="form-control" name='name' type='text' value="<%=course.getName()%>"><br/>
+            <input class="form-control" name='name' type='text' required value="<%=course.getName()%>"><br/>
         </div>
         <div class="form-group">
-            <input class="form-control" name='classroom' type='number' value=<%=course.getRoom()%>><br/>
+            <input class="form-control" name='classroom' type='number' required value=<%=course.getRoom()%>><br/>
         </div>
         <div>
             <input class="btn btn-outline-success btn-sm" type='submit' value="Update"/>

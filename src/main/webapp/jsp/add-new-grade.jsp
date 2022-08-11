@@ -43,8 +43,8 @@
         <input class="form-control" name='newGrade' type='hidden' value="newGrade"><br/>
 
         <div class="form-floating mb-3">
-            <select id="SubjectID" name="SubjectID" class="form-control mb-2">
-                <c:forEach items="${courses}" var="course" varStatus="loop">
+            <select id="SubjectID" name="SubjectID" class="form-control mb-2" required >
+                <c:forEach items="${courses}" var="course" varStatus="loop" >
                     <option value="${course.ID}">
                             ${course.name}
                     </option>
@@ -53,7 +53,7 @@
             <label for="SubjectID">select Course</label>
         </div>
         <div class="form-floating mb-3">
-            <select id="StudentID" name="StudentID" class="form-control mb-2">
+            <select id="StudentID" name="StudentID" class="form-control mb-2" required>
                 <c:forEach items="${students}" var="student" varStatus="loop">
                     <option value="${student.ID}">
                             ${student.getFullName()}
@@ -63,7 +63,7 @@
             <label for="StudentID">select Student</label>
         </div>
         <div class="form-floating mb-3">
-            <select id="ProfessorID" name="ProfessorID" class="form-control mb-2">
+            <select id="ProfessorID" name="ProfessorID" class="form-control mb-2" required>
                 <c:forEach items="${professors}" var="professor" varStatus="loop">
                     <option value="${professor.ID}">
                             ${professor.getFullName()}
@@ -73,7 +73,7 @@
             <label for="ProfessorID">select Professor</label>
         </div>
         <div class="form-floating mb-3">
-            <input id="grade" class="form-control" name='Grade' type='text' placeholder="Grade"/><br/>
+            <input id="grade" class="form-control" name='Grade' type='numeric' placeholder="Grade" required min="1"/><br/>
             <label for="grade">finally ... GRADE :)</label>
         </div>
         <div>

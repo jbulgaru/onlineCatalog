@@ -1,8 +1,14 @@
 package com.stefanini.onlinecatalog.dao;
 import com.stefanini.onlinecatalog.JpaService;
+
+import com.stefanini.onlinecatalog.activemq.MDBQueue;
 import com.stefanini.onlinecatalog.entity.Students;
+
+import javax.jms.JMSException;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,20 +22,19 @@ public class DaoStudent implements  DAO<Students> {
     }
 
     @Override
-    public List<Students> getAll() {
+    public List<Students> getAll() throws Exception {
+       MDBQueue mdbQueue = new MDBQueue();
+        mdbQueue.doLookup();
+
         Query query = entityManager.createQuery("SELECT c FROM Students c", Students.class);
         return query.getResultList() ;
     }
+
     public List<Students> getAllGrantHolders() {
         Query query = entityManager.createQuery("SELECT c FROM Students c where c.grantHolder='y'", Students.class);
         return query.getResultList() ;
     }
-    /*public List<Students>  groupStudentsBySubjects() {
-        Query query = entityManager.createNamedQuery("group students by subjects");
 
-        return query.getResultList() ;
-    }
-*/
 
     @Override
     public void save(Students students) {
@@ -53,17 +58,16 @@ public class DaoStudent implements  DAO<Students> {
     @Override
     public void delete(Students students) {
         entityManager.getTransaction().begin();
-        System.out.println(students);
         Students student = entityManager.merge(students);
         entityManager.remove(student);
         entityManager.getTransaction().commit();
     }
     public List<Students> getBursieriDeMerit(){
         entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("SELECT s " +
-                "FROM Students s " +
+        Query query = entityManager.createQuery("SELECT OBJECT(Studen)" +
+                "FROM Students Studen " +
                 "JOIN FETCH  Prof_Stud_Subj Prof " +
-                "ON Prof.studentID = s.ID and Prof.grade >= 9 ORDER by Prof.grade desc", Students.class);
+                "ON Prof.studentID = Studen.ID and Prof.grade >= 9 ORDER by Prof.grade desc", Students.class);
         List<Students> students =  query.getResultList();
         entityManager.getTransaction().commit();
         return students;

@@ -17,10 +17,10 @@
 <div class="mx-auto col-lg-3">
   <form action="/OnlineCatalog/ServletLogin" method="post">
     <div class="form-group">
-      <input class="form-control" name='username' type='text' placeholder="User Name"/><br/>
+      <input class="form-control" name='username' type='text' placeholder="User Name" required/><br/>
     </div>
     <div class="form-group">
-      <input class="form-control" name='password' type='password' placeholder="Password"/><br/>
+      <input class="form-control" name='password' type='password' placeholder="Password" required/><br/>
     </div>
     <div>
       <input class="btn btn-outline-success btn-sm" name='Submit' type='submit'/>

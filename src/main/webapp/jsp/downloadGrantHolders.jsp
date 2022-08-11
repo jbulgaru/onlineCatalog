@@ -7,7 +7,7 @@
 <jsp:include page="/jsp/navbar.jsp"/>
 <body>
 
-<h3 class="center_brown">Downloading file...</h3>
+<h3 class="center_brown">Sending file...</h3>
 <br/>
 <div class="mx-auto col-lg-3">
     <form action="/OnlineCatalog/ServletStudentSaveGrantHoldersToXML" method="post">

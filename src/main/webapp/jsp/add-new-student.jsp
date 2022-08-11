@@ -19,16 +19,16 @@
     <form action="/OnlineCatalog/ServletStudents" method="post">
         <input name='newStudent' type='hidden'>
         <div class="form-group">
-            <input class="form-control" name='FirstName' type='text'  placeholder="FirstName"><br/>
+            <input class="form-control" name='FirstName' type='text'  placeholder="FirstName" required><br/>
         </div>
         <div class="form-group">
-            <input class="form-control" name='LastName' type='text' placeholder="LastName"><br/>
+            <input class="form-control" name='LastName' type='text' placeholder="LastName" required><br/>
         </div>
         <div class="form-group">
             <input class="form-control" name='Email' type='email' placeholder="Email"><br/>
         </div>
         <div class="form-group">
-            <input class="form-control" name='GrantHolder' type='text' placeholder="GrantHolder"><br/>
+            <input class="form-control" name='GrantHolder' type='text' placeholder="GrantHolder" required><br/>
         </div>
         <div>
             <input class="btn btn-outline-danger btn-sm" name='add' type='submit' value="Add"/>

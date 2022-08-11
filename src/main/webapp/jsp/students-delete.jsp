@@ -38,7 +38,10 @@
         <div class="form-group">
             <input class="form-control" name='GrantHolder' type='text' value=<%=student.getGrantHolder()%>><br/>
         </div>
-        <div><p class="center_brown">Are you sure you want to update this record ?</p></div>
+        <div><p class="center_brown h4">Are you sure you want to delete this record ?<br>
+
+        </p></div>
+        <br>
         <div>
             <input class="btn btn-outline-danger btn-sm" name='Update' type='submit' value="Delete"/>
             <a class="btn btn-outline-primary btn-sm float-right" href="/OnlineCatalog/ServletStudents">Cancel</a>

@@ -1,5 +1,6 @@
 package com.stefanini.onlinecatalog;
 
+import com.stefanini.onlinecatalog.dao.DaoProf_Stud_Subj;
 import com.stefanini.onlinecatalog.dao.DaoProfessor;
 import com.stefanini.onlinecatalog.dao.DaoStudent;
 import com.stefanini.onlinecatalog.entity.Students;
@@ -47,13 +48,17 @@ public class ServletStudents extends HttpServlet {
     @Override
     protected  void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException{
         DaoStudent daoStudent = new DaoStudent();
+        DaoProf_Stud_Subj daoProfStudSubj = new DaoProf_Stud_Subj();
         Students student = daoStudent.find(Integer.valueOf(request.getParameter("delete")));
+        Integer idStudent = student.getID();
         try{
+            //daoProfStudSubj.deleteStudentsByIDs(idStudent);
             daoStudent.delete(student);
         }catch (Exception e){
-            System.out.println("\n\nConstraint error when trying to remove student entity!!\n\n\n");
+            System.out.println("\n\nConstraint error when trying to remove student entity!!!\n\n\n");
             e.printStackTrace();
         }
+
         daoStudent.close();
         response.sendRedirect("ServletStudents");
 

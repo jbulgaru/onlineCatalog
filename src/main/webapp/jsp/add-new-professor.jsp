@@ -17,10 +17,10 @@
 <div class="mx-auto col-lg-3">
     <form action="/OnlineCatalog/ServletProfessors" method="post">
         <div class="form-group">
-            <input class="form-control" name='firstName' type='text' placeholder="First Name"/><br/>
+            <input class="form-control" name='firstName' type='text' placeholder="First Name" required/><br/>
         </div>
         <div class="form-group">
-            <input class="form-control" name='lastName' type='text' placeholder="Last Name"/><br/>
+            <input class="form-control" name='lastName' type='text' placeholder="Last Name" required/><br/>
         </div>
         <div class="form-group">
             <input class="form-control" name='email' type='email' placeholder="Email"/><br/>

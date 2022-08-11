@@ -19,7 +19,7 @@ import java.util.*;
 
 @WebServlet(name = "ServletStudentSaveGrantHoldersToXML", value = "/ServletStudentSaveGrantHoldersToXML")
 public class ServletStudentSaveGrantHoldersToXML extends HttpServlet {
-    static String path = "C:\\Users\\VPARASCH\\IdeaProjects\\OnlineCatalog\\src\\main\\resources\\XMLfileStudents.xml";
+    static String path = "C:\\Users\\YBULHARU\\IdeaProjects\\OnlineCatalog\\src\\main\\resources\\XMLfileStudents.xml";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

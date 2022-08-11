@@ -20,7 +20,6 @@ public class Prof_Stud_Subj {
     @ManyToOne(targetEntity = Subjects.class)
    @JoinColumn(name = "SubjectID", referencedColumnName = "ID", nullable = false)
     Subjects subjectID;
-
     @Column(name = "Grade", nullable = false)
     Float grade;
 
