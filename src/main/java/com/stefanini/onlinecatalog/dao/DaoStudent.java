@@ -1,14 +1,10 @@
 package com.stefanini.onlinecatalog.dao;
 import com.stefanini.onlinecatalog.JpaService;
 
-import com.stefanini.onlinecatalog.activemq.MDBQueue;
 import com.stefanini.onlinecatalog.entity.Students;
 
-import javax.jms.JMSException;
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
